@@ -38,61 +38,63 @@ let genreStereotype = [
     "Rhyme Rinoceroce",
 ];
 
-var d = new Date();
-var n = d.getHours();
+let date = new Date();
+let hours = date.getHours();
+let timeOfDay;
 
-if (n >= 0 && n <= 12){
-    n = "Morning"
+if (hours >= 0 && hours <= 12){
+    timeOfDay = "morning"
 }
-if (n > 12 && n <= 14){
-    n = "Afternoon"
+else if (hours > 12 && hours <= 14){
+    timeOfDay = "afternoon"
 }
-if (n > 6 && n <= 23){
-    n = "Evening"
+else if (hours > 6 && hours <= 23){
+    timeOfDay = "evening"
 }
-//console.log(n)
-var day = d.getDay();
-if (day === 0){
-    day = "Sunday"
+
+var day = date.getDay();
+switch (day){
+    case 0:
+        day = "Sunday"
+        break;
+    case 1:
+        day = "Monday"
+        break;
+    case 2:
+        day = "Tuesday"
+        break;
+    case 3:
+        day = "Wednesday"
+        break;
+    case 4:
+        day = "Thursday"
+        break;
+    case 5:
+        day = "Friday"
+        break;
+    default:
+        day = "Saturday"
+        break;
 }
-if (day === 1){
-    day = "Monday"
-}
-if (day === 2){
-    day = "Tuesday"
-}
-if (day === 3){
-    day = "Wednesday"
-}
-if (day === 4){
-    day = "Thursday"
-}
-if (day === 5){
-    day = "Friday"
-}
-if (day === 6){
-    day = "Saturday"
-}
-//console.log(day)
 
 const mixedMessages = (userName, userGenre) => {
+    let output = ' ';
     for (let i = 0; i < genres.length; i++){
         if (userGenre == genres[i]){
-            console.log(`Hello, ${userName}! I see that you like listening to ${genres[i]}!`);
             let index = genres.indexOf(genres[i])
             let randomSong = songSuggestion[index][Math.floor(Math.random() * songSuggestion[index].length)]
-            console.log(`If you like ${userGenre}, you might like this song: ${randomSong}.`);
-            console.log(`You're a true ${genreStereotype[index]} if you like listening to ${userGenre} on a ${day} ${n}!`);    
-        break
+            output = `Hello, ${userName}! I see that you like listening to ${genres[i]} music!
+                      If you like ${userGenre}, you might like this song: ${randomSong}.
+                      You're a true ${genreStereotype[index]} if you like listening to ${userGenre} on a ${day} ${timeOfDay}!` 
+        break  
         } else { 
-            console.log(`Hi ${userName}! I actually haven't heard of ${userGenre} before! 
+            output = `Hi ${userName}! I actually haven't heard of ${userGenre} before! 
         Can you tell me your second favorite genre? I figured in the meantime I could share one of my favorite songs with you anyways, 
-        its ${songSuggestion[10][Math.floor(Math.random() * songSuggestion[10].length)]}.`)     
+        its ${songSuggestion[10][Math.floor(Math.random() * songSuggestion[10].length)]}.`
         }
-        break
     }
+    console.log(output)
 };
 
-
-mixedMessages("Jesse", "Rap")
+mixedMessages("Jesse", "ock")
 
