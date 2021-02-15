@@ -96,5 +96,5 @@ const mixedMessages = (userName, userGenre) => {
     console.log(output)
 };
 
-mixedMessages("Jesse", "ock")
+mixedMessages("Jesse", "Rock")
 
